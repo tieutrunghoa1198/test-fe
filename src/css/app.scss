@@ -1,0 +1,27 @@
+// app global css in SCSS form
+
+$grid-breakpoints: (
+  'xs': 0,
+  'sm': 600px,
+  'md': 1024px,
+  'lg': 1440px,
+  'xl': 1920px,
+);
+
+@each $name, $min-width in $grid-breakpoints {
+  @if $name == 'xs' {
+    @for $gap from 0 through 20 {
+      .gap-#{$gap} {
+        gap: #{$gap * 4}px;
+      }
+    }
+  } @else {
+    @media all and (min-width: $min-width) {
+      @for $gap from 0 through 20 {
+        .gap-#{$name}-#{$gap} {
+          gap: #{$gap * 4}px;
+        }
+      }
+    }
+  }
+}
